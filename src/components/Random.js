@@ -1,47 +1,35 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { FaHandHoldingHeart } from "react-icons/fa";
 
-function Search() {
-  const [searchWord, setSearchWord] = useState("");
+const URL = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
+
+function Random() {
   const [strDrink, setStrDrink] = useState(""); //nimi
   const [strCategory, setStrCategory] = useState(""); //kategoria
   const [strDrinkThumb, setDrinkThumb] = useState(""); //kuva
-  const [strAlcoholic, setStrAlcoholic] = useState("");
+  const [strAlcoholic, setStrAlcoholic] = useState("second");
 
-  function handleInputChange(e) {
-    setSearchWord(e.target.value);
-  }
-
-  function sendApi(e) {
-    e.preventDefault();
-    const URL =
-      "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + searchWord;
-
+  useEffect(() => {
     axios
       .get(URL)
       .then((response) => {
-        console.log("Response on: " + JSON.stringify(response.data, null, 2));
+        console.log(response.data);
         setStrDrink(response.data.drinks[0].strDrink);
         setStrCategory(response.data.drinks[0].strCategory);
         setDrinkThumb(response.data.drinks[0].strDrinkThumb);
         setStrAlcoholic(response.data.drinks[0].strAlcoholic);
       })
       .catch((error) => {
-        alert("Could not find it. Try something else");
+        alert(error);
       });
-  }
+  }, []);
 
   return (
-    <div className="search">
-      <h2>Search a drink</h2>
-      <form onSubmit={sendApi}>
-        <input
-          type="text"
-          value={searchWord}
-          onChange={handleInputChange}
-        ></input>
-        <button>Search</button>
-      </form>
+    <div className="random">
+      <h2>
+        A random drink for You <FaHandHoldingHeart />
+      </h2>
       <p>
         <b>Drink:</b> {strDrink}
       </p>
@@ -56,4 +44,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default Random;

@@ -1,11 +1,31 @@
-.image {
-  width: 20vw;
+* {
+  background-color: #d6ccc2;
+  color: #262323;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+} 
+
+#root {
+  max-width: 860px;
+  margin: 0 auto;
 }
 
-* {
-  background-color: #290025;
-  margin-left: 0.5vw;
-  margin-top: 2vh;
-  color: white;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+.image {
+  width: 20vw;
+  border: #0c0910 solid;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.random, .search {
+  background-color: white;
+  padding: 30px;
+}
+
+h2, p, b, form, input {
+  background-color: white;
 }
